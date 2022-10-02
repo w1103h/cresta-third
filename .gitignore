@@ -1,0 +1,15 @@
+.vscode/*
+about/img/*
+contact/img/*
+css/normalize.css
+css/style.css.map
+css/style.min.css
+css/style.min.css.map
+fonts/*
+img/*
+node_modules/
+.eslintrc.js
+.prettierrc.js
+.stylelintrc.js
+package.json
+package-lock.json
