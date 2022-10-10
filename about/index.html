@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- エンコード設定 -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- レスポンシブ対応 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 模写コーディングのため、Basic認証をかける -->
+    <meta name="robots" content="noindex , nofollow" />
+
+    <!-- ページ設定 -->
+    <title>Document</title>
+    <meta name="keywards" content="ページのキーワード１,ページのキーワード２,ページのキーワード３" />
+    <meta name="description" content="ページの説明" />
+    <link rel="shortcut icon" href="#" />
+    <link rel="apple-touch-icon" href="#" />
+
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <!-- ヘッダー -->
+    <header class="ly_header">
+      <div class="bl_headerUtils">
+        <!-- サイトロゴ -->
+        <a class="bl_headerUtils_logo" 　href="#"><img src="../img/site-logo.svg" alt="DIGSMILE INC." /></a>
+        <!-- ハンバーガーボタン -->
+        <button class="bl_humbergerBtn">
+          <div class="bl_humbergerBtn_icon">
+            <span class="bl_humbergerBtn_bar bl_humbergerBtn_bar__top"></span>
+            <span class="bl_humbergerBtn_bar bl_humbergerBtn_bar__mid"></span>
+            <span class="bl_humbergerBtn_bar bl_humbergerBtn_bar__bottom"></span>
+          </div>
+          <p class="bl_humbergerBtn_txt">MENU</p>
+        </button>
+        <!-- ヘッダーナビゲーション -->
+        <nav class="bl_headerNav">
+          <ul class="bl_headerNav_inner">
+            <li>
+              <a class="bl_headerNav_siteLogo" href="../index.html"><img src="../img/site-logo2.svg" alt="" /></a>
+            </li>
+            <li><a class="bl_headerNav_link" href="#sec_about">ABOUT US</a></li>
+            <li><a class="bl_headerNav_link" href="#sec_works">WORKS</a></li>
+            <li><a class="bl_headerNav_link" href="#sec_culture">CULTURE</a></li>
+            <li><a class="bl_headerNav_link" href="#sec_topics">TOPICS</a></li>
+            <li><a class="bl_headerNav_link" href="#sec_contact">CONTACT</a></li>
+          </ul>
+        </nav>
+      </div>
+      <!-- /.bl_headerUtils -->
+    </header>
+
+    <main>
+      <!-- キービジュアル -->
+      <div class="bl_keyVisual">
+        <figure class="bl_keyVisual_imgWrapper">
+          <img src="./img/heading-img@2x.jpg" alt="" />
+        </figure>
+        <div class="bl_keyVisual_body">
+          <p class="bl_keyVisual_bigCopy">ABOUT US</p>
+          <p class="bl_keyVisual_smallCopy">DIGSMILEについて</p>
+        </div>
+        <!-- /.bl_keyVisual_body -->
+      </div>
+      <!-- /.bl_mainVisual -->
+      <article class="ly_article"></article>
+    </main>
+
+    <!-- フッター -->
+    <footer class="ly_footer">
+      <p class="el_copyRight">&copy;2018 DIGSMILE INC.</p>
+    </footer>
+
+    <!-- Java Script 読み込み -->
+    <script src="../js/jquery-3.6.1.min.js"></script>
+    <script src="../js/humbergerBtn.js"></script>
+  </body>
+</html>
