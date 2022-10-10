@@ -2,3 +2,34 @@
     ファイル名：_fonts.scss
     機能：フォントのスタイルを記述する
 --------------------------------------------------*/
+/* Montserrat ExtraBold */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+}
+
+/* Montserrat Bold */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+}
+
+/* Montserrat Medium */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+}
+
+/* Noto Sans JP Medium */
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/NotoSansJP-Medium.otf") format("opentype");
+}

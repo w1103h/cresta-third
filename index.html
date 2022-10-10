@@ -1,45 +1,169 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <!-- エンコード指定 -->
+    <meta charset="UTF-8" />
 
-<head>
-  <!-- エンコード指定 -->
-  <meta charset="UTF-8">
+    <!-- ページ設定 -->
+    <title>タイトル</title>
+    <meta name="keywards" content="ページのキーワード１,ページのキーワード２,ページのキーワード３" />
+    <meta name="description" content="ページの説明" />
+    <link rel="shortcut icon" href="#" />
+    <link rel="apple-touch-icon" href="#" />
 
-  <!-- ページ設定 -->
-  <title>タイトル</title>
-  <meta name="keywards" content="ページのキーワード１,ページのキーワード２,ページのキーワード３">
-  <meta name="description" content="ページの説明">
-  <link rel="shortcut icon" href="#">
-  <link rel="apple-touch-icon" href="#">
+    <!-- レスポンシブ対応 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- レスポンシブ対応 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 模写コーディングのため、Basic認証をかける -->
+    <meta name="robots" content="noindex , nofollow" />
 
-  <!-- 模写コーディングのため、Basic認証をかける -->
-  <meta name="robots" content="noindex , nofollow">
+    <!-- フォント読み込み -->
 
-  <!-- フォント読み込み -->
-  
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-  <!-- CSS読み込み -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <body class="pg_top">
+    <header class="ly_header">
+      <div class="bl_headerUtils">
+        <h1 class="bl_headerUtils_logo">
+          <a href="#"><img src="./img/site-logo.svg" alt="DIGSMILE INC." /></a>
+        </h1>
+        <button class="bl_humbergerBtn">
+          <div class="bl_humbergerBtn_icon">
+            <span class="bl_humbergerBtn_bar bl_humbergerBtn_bar__top"></span>
+            <span class="bl_humbergerBtn_bar bl_humbergerBtn_bar__mid"></span>
+            <span class="bl_humbergerBtn_bar bl_humbergerBtn_bar__bottom"></span>
+          </div>
+          <p class="bl_humbergerBtn_txt">MENU</p>
+        </button>
+        <nav class="bl_headerNav">
+          <ul class="bl_headerNav_inner">
+            <li>
+              <a class="bl_headerNav_siteLogo" href="#sec_about"><img src="./img/site-logo2.svg" alt="#" /></a>
+            </li>
+            <li><a class="bl_headerNav_link" href="#sec_about">ABOUT US</a></li>
+            <li><a class="bl_headerNav_link" href="#sec_works">WORKS</a></li>
+            <li><a class="bl_headerNav_link" href="#sec_culture">CULTURE</a></li>
+            <li><a class="bl_headerNav_link" href="#sec_topics">TOPICS</a></li>
+            <li><a class="bl_headerNav_link" href="#sec_contact">CONTACT</a></li>
+          </ul>
+        </nav>
+      </div>
+      <!-- /.bl_headerUtils -->
+    </header>
 
-<body class="pg_top">
-  <header class="ly_header">
-  </header>
+    <main class="pg_home">
+      <!-- キービジュアル -->
+      <div class="bl_keyVisual">
+        <figure class="bl_keyVisual_imgWrapper">
+          <img src="./img/kv-img@2x.jpg" alt="" />
+        </figure>
+        <div class="bl_keyVisual_body">
+          <p class="bl_keyVisual_smallCopy">デザインで人を笑顔にする会社</p>
+          <p class="bl_keyVisual_smallCopy">DIGSMILE INC.</p>
+          <p class="bl_keyVisual_bigCopy">DESIGN<br />FOR<br />SMILE.</p>
+        </div>
+      </div>
+      <!-- /.bl_mainVisual -->
+      <article class="ly_article">
+        <!-- ABOUT US -->
+        <div class="ly_cont ly_cont__overlay">
+          <section class="bl_overlay_bg" id="sec_about">
+            <div class="bl_overlay">
+              <h2 class="el_sectionTtl">ABOUT US</h2>
+              <p class="bl_overlay_txt">
+                DIGSMILEは、デザインで人を笑顔にする会社。<br />
+                なんでもない日常に少しのワクワクと遊び心を提供します。笑顔には世界を変える力がある、デザインには人を幸せにする力がある。毎日に幸せを感じて生きていきたい。<br />
+                DIGSMILEの社名にはそんな想いが込められています。
+              </p>
+              <a class="el_btn" href="#">READ MORE</a>
+            </div>
+            <!-- /.ly_cont_inner -->
+          </section>
+        </div>
+        <!-- /.ly_cont -->
+        <div class="ly_cont ly_cont__gray ly_cont__col2 lg_pt80 md_pt60">
+          <!-- WORKS -->
+          <section class="ly_cont_inner md_mb80 lg_mb0" id="sec_works">
+            <h2 class="el_sectionTtl">WORKS</h2>
+            <div class="bl_card">
+              <img class="bl_card_img" src="./img/works-img@2x.jpg" width="520" height="350" alt="" />
+              <div class="bl_card_body">
+                <p class="bl_card_txt">DIGSMILEの制作実績を紹介します。</p>
+              </div>
+            </div>
+            <a class="el_btn" href="#">READ MORE</a>
+          </section>
+          <!-- CULTURE -->
+          <section class="ly_cont_inner" id="sec_culture">
+            <h2 class="el_sectionTtl">CULTURE</h2>
+            <div class="bl_card">
+              <img class="bl_card_img" src="./img/culture-img@2x.jpg" width="520" height="350" alt="" />
+              <div class="bl_card_body">
+                <p class="bl_card_txt">DIGSMILEの社内文化について紹介します。</p>
+              </div>
+            </div>
+            <a class="el_btn" href="#">READ MORE</a>
+          </section>
+        </div>
+        <!-- /.ly_cont -->
+        <!-- LATEST TOPICS -->
+        <section class="ly_cont" id="sec_topics">
+          <div class="ly_cont_inner">
+            <h2 class="el_sectionTtl">LATEST TOPICS</h2>
+            <ul class="bl_vertPosts">
+              <li class="bl_vertPosts_item">
+                <div class="bl_vertPosts_header">
+                  <time class="bl_vertPosts_date" datetime="2020-02-01">2020.02.01</time>
+                </div>
+                <a class="bl_vertPosts_ttl" href="#">イベントレポート「VRクリエイター座談会 〜5Gの次に来るもの〜」</a>
+              </li>
+              <li class="bl_vertPosts_item">
+                <div class="bl_vertPosts_header">
+                  <time class="bl_vertPosts_date" datetime="2020-01-18">2020.01.18</time>
+                </div>
+                <a class="bl_vertPosts_ttl" href="#">プレスリリースのお知らせ DIGGIN’ RECORDS</a>
+              </li>
+              <li class="bl_vertPosts_item">
+                <div class="bl_vertPosts_header">
+                  <time class="bl_vertPosts_date" datetime="2020-01-01">2020.01.01</time>
+                </div>
+                <a class="bl_vertPosts_ttl" href="#">新年明けましておめでとうございます</a>
+              </li>
+            </ul>
+            <a class="el_btn lg_right" href="#">READ MORE</a>
+          </div>
+          <!-- /.ly_cont_inner -->
+        </section>
+        <!-- CONTACT -->
+        <section class="ly_cont ly_cont__gray md_pb80 lg_pb120" id="sec_contact">
+          <div class="ly_cont_inner">
+            <div class="bl_sectionCol2">
+              <img class="bl_sectionCol2_img" src="./img/recruit-img@2x.jpg" width="580" height="390" alt="" />
+              <div class="bl_sectionCol2_body">
+                <h2 class="el_sectionTtl">CONTACT</h2>
+                <p class="el_sectionMsg">
+                  制作の依頼、取材の依頼、IRや採用についての連絡・お問い合わせはコンタクトページから承っております。<br />まずはお気軽にご連絡ください。担当者から改めて返信いたします。
+                </p>
+                <a class="el_btn" href="#">READ MORE</a>
+              </div>
+              <!-- bl_section2col_body -->
+            </div>
+            <!-- /.bl_section2col -->
+          </div>
+          <!-- /.ly_cont_inner -->
+        </section>
+      </article>
+    </main>
 
-  <main>
-  </main>
+    <footer class="ly_footer">
+      <p class="el_copyRight">&copy;2018 DIGSMILE INC.</p>
+    </footer>
 
-  <footer class="ly_footer">
-    <p class="el_copyRight">&copy</p>
-  </footer>
-
-  <!-- Java Script 読み込み -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="./js/script.js"></script>
-</body>
-
+    <!-- Java Script 読み込み -->
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <script src="./js/humbergerBtn.js"></script>
+  </body>
 </html>

@@ -1,7 +1,18 @@
+@use "variables" as v;
+
 /*------------------------------------------------
     ファイル名：_mixin.scss
     機能：mixinを記述する
 --------------------------------------------------*/
+
+/*----------
+    メディアクエリを定義する
+----------*/
+@mixin mediaQueryMin($breakpoint: sm) {
+  @media screen and (min-width: map-get(v.$breakpoints, $breakpoint)) {
+    @content;
+  }
+}
 
 /*----------
     line-heightを調節する（XDとwebで仕様が異なるため） 
@@ -12,16 +23,14 @@
 
   &::before {
     display: block;
-    margin-top: calc(1 - (#{$line-height}) * 0.5em);
-
     content: "";
+    margin-top: calc((1 - #{$line-height}) * 0.5em);
   }
 
   &::after {
     display: block;
-    margin-bottom: calc(1 - (#{$line-height}) * 0.5em);
-
     content: "";
+    margin-bottom: calc((1 - #{$line-height}) * 0.5em);
   }
 }
 
@@ -31,10 +40,5 @@
 ----------*/
 @mixin letterSpacingAdjustment($letter-spacing) {
   letter-spacing: $letter-spacing;
-
-  &::after {
-    margin-left: -$letter-spacing;
-
-    content: "";
-  }
+  margin-right: -$letter-spacing;
 }
