@@ -1,23 +1,58 @@
 @use "variables" as v;
 
-/*------------------------------------------------
+/* ------------------------------------------------
     ファイル名：_mixin.scss
     機能：mixinを記述する
---------------------------------------------------*/
+-------------------------------------------------- */
 
-/*----------
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin vs($property, $min-vp, $min-length, $max-vp, $max-length, $vp-unit: "vw") {
+  $u01: unit($min-vp);
+  $u02: unit($min-length);
+  $u03: unit($max-vp);
+  $u04: unit($max-length);
+  $a: strip-unit($min-vp);
+  $b: strip-unit($min-length);
+  $c: strip-unit($max-vp);
+  $d: strip-unit($max-length);
+  /*
+  @if $u01 == $u03 and $u02 == $u04 {
+    $x: (($d - $b) / ($c - $a) * 100) + #{$vp-unit};
+    $y: (($c * $b - $a * $d) / ($c - $a)) + #{$u02};
+
+    #{$property}: clamp($min-length);
+
+    @media screen and (min-width: $min-vp) {
+      @if $y == 0 {
+        #{$property}: $x;
+      } @else {
+        #{$property}: calc(#{$x} + #{$y});
+      }
+    }
+
+    @media screen and (min-width: $max-vp) {
+      #{$property}: $max-length;
+    }
+  }
+  */
+}
+
+/* ----------
     メディアクエリを定義する
-----------*/
+---------- */
 @mixin mediaQueryMin($breakpoint: sm) {
   @media screen and (min-width: map-get(v.$breakpoints, $breakpoint)) {
     @content;
   }
 }
 
-/*----------
+/* ----------
     line-heightを調節する（XDとwebで仕様が異なるため） 
     $line-height: line-heightの指定値
-----------*/
+---------- */
 @mixin lineHeightAdjustment($line-height) {
   line-height: $line-height;
 
@@ -32,13 +67,4 @@
     content: "";
     margin-bottom: calc((1 - #{$line-height}) * 0.5em);
   }
-}
-
-/*----------
-    letter-spacingを調節する（XDとwebで仕様が異なるため） 
-    $letter-spacing: letter-spacingの指定値
-----------*/
-@mixin letterSpacingAdjustment($letter-spacing) {
-  letter-spacing: $letter-spacing;
-  margin-right: -$letter-spacing;
 }
