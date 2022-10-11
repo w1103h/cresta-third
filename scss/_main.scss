@@ -62,6 +62,8 @@
 
 /* コンテンツエリア */
 .ly_cont {
+  position: relative;
+
   /* 余白設定 */
   padding: 40px max(calc(0.9375rem + ((1vw - 3.75px) * 5.137)), 15px);
 
@@ -84,9 +86,6 @@
 
     /* タブレット幅以上用 */
     @include m.mediaQueryMin(md) {
-      /* 一部だけ背景色を塗る */
-      background: linear-gradient(to top, #f0f0f0 100px, #fff 100px);
-
       /* 余白設定 */
       padding: 0 max(calc(0.0625rem + ((1vw - 7.68px) * 25.1488)), 0px);
     }
@@ -101,6 +100,7 @@
 
   /* 背景色を設定 */
   &.ly_cont__gray {
+    z-index: -1;
     background-color: #f0f0f0;
   }
 
@@ -399,7 +399,7 @@
   background: linear-gradient(
     to right,
     #fff max(calc(5.75rem + ((1vw - 3.75px) * 29.0076)), 92px),
-    red max(calc(5.75rem + ((1vw - 3.75px) * 29.0076)), 92px)
+    #222 max(calc(5.75rem + ((1vw - 3.75px) * 29.0076)), 92px)
   );
 
   /* タブレット幅以上用 */
@@ -472,19 +472,20 @@
 
   /* タブレット幅以上用 */
   @include m.mediaQueryMin(md) {
-    top: min(calc(20.6875rem + ((1vw - 7.68px) * -25.5952)), 331px);
-    right: min(calc(5rem + ((1vw - 7.68px) * 16.9643)), 80px);
+    top: 331px;
+    left: 443px;
   }
   /* PC幅以上用 */
   @include m.mediaQueryMin(lg) {
     top: 159px;
-    right: 194px;
+    left: 954px;
   }
 }
 
 /* aboutページ用文字のまとまり */
 .pg_about .bl_keyVisual_body {
   top: 149px;
+  left: 57px;
 }
 
 /* キャッチコピー（小） */
@@ -501,14 +502,14 @@
   margin-bottom: 10px;
 
   /* 文字調整 */
-  /*
+
   &::before {
     margin-top: 0px;
   }
 
   &::after {
     margin-bottom: 0px;
-  }*/
+  }
 
   /* タブレット幅以上用 */
   @include m.mediaQueryMin(md) {
@@ -521,17 +522,18 @@
     /* 文字設定 */
     font-size: 1.25rem;
     letter-spacing: 0;
+    @include m.lineHeightAdjustment(1.25);
 
     /* 余白設定 */
     padding-bottom: 0;
 
     /* 文字調整 */
     &::before {
-      margin-top: 3px;
+      margin-top: 0px;
     }
 
     &::after {
-      margin-bottom: 3px;
+      margin-bottom: 0px;
     }
   }
 }
@@ -544,21 +546,20 @@
   font-size: 3.5rem;
   letter-spacing: 0.063em;
   @include m.lineHeightAdjustment(0.946429);
+  white-space: nowrap;
 
   /* 余白設定 */
   padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
 
   /* 文字調整 */
-  /*
   &::before {
-    margin-top: 6px;
+    padding-top: 7.5px;
   }
 
   &::after {
-    margin-bottom: 6px;
-  }*/
+    padding-bottom: 7.5px;
+  }
 
   /* タブレット幅以上用 */
   @include m.mediaQueryMin(md) {
@@ -589,6 +590,18 @@
   /* 文字設定 */
   font-size: 3.25rem;
   letter-spacing: 0;
+
+  /* 余白設定 */
+  margin-bottom: 5px;
+
+  /* 文字調整 */
+  &::before {
+    margin-top: 7px;
+  }
+
+  &::after {
+    margin-bottom: 7px;
+  }
 }
 
 /*----------------------
@@ -941,11 +954,11 @@
 
   /* 文字調整 */
   &::before {
-    margin-top: -5.5px;
+    margin-top: -4px;
   }
 
   &::after {
-    margin-bottom: -5.5px;
+    margin-bottom: -4 v px;
   }
 }
 
@@ -954,6 +967,7 @@
   /* 文字設定 */
   font-family: "Montserrat", "Noto Sans JP", sans-serif;
   font-weight: map-get(v.$fontweights, bold);
+  font-size: 0.875rem;
 
   /* 余白設定 */
   margin-bottom: 40px;
@@ -1021,8 +1035,8 @@
 
 /* タブレット幅以上でのヘルパー */
 @media screen and (min-width: 768px) {
-  .md_pt60 {
-    padding-top: 60px !important;
+  .md_pt160 {
+    padding-top: 160px !important;
   }
 
   .md_pb80 {
@@ -1032,13 +1046,18 @@
   .md_mb80 {
     margin-bottom: 80px !important;
   }
+
+  /* 位置設定 */
+  .md_TOP100 {
+    top: -100px;
+  }
 }
 
 /* PC幅以上でのヘルパー */
 @media screen and (min-width: 1440px) {
   /* 余白設定 */
-  .lg_pt80 {
-    padding-top: 80px !important;
+  .lg_pt180 {
+    padding-top: 180px !important;
   }
 
   .lg_pb120 {
