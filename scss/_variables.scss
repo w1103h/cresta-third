@@ -6,6 +6,23 @@
 /* ベースカラー */
 $base-color: #333;
 
+/* フォントの太さ */
+$fontweights: (
+  thin: 100,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  bold: 700,
+  extrabold: 800,
+  black: 900,
+) !default;
+
+/* 各ページのクラス名 */
+$pageclasses: (
+  home: ".pg_home",
+  about: ".pg_about",
+) !default;
+
 /* ブレークポイント */
 $breakpoints: (
   sm: 375px,

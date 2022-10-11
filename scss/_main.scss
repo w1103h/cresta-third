@@ -279,9 +279,9 @@
   /* 文字設定 */
   text-decoration: none;
   color: #fff;
-  font-weight: 800;
+  font-weight: map-get(v.$fontweights, extrabold);
   font-size: 1.25rem;
-  @include m.letterSpacingAdjustment(0.068em);
+  letter-spacing: 0.068em;
   white-space: nowrap;
 
   /* 余白設定 */
@@ -330,9 +330,9 @@
 
   /* 文字設定 */
   color: #fff;
-  font-weight: 800;
+  font-weight: map-get(v.$fontweights, extrabold);
   font-size: 0.625rem;
-  @include m.letterSpacingAdjustment(0.005em);
+  letter-spacing: 0.005em;
 
   /* 余白設定 */
   margin: 0;
@@ -395,10 +395,11 @@
   position: relative;
   height: 100vh;
   /* 一部だけ背景色を塗る */
+
   background: linear-gradient(
     to right,
     #fff max(calc(5.75rem + ((1vw - 3.75px) * 29.0076)), 92px),
-    #222 max(calc(5.75rem + ((1vw - 3.75px) * 29.0076)), 92px)
+    red max(calc(5.75rem + ((1vw - 3.75px) * 29.0076)), 92px)
   );
 
   /* タブレット幅以上用 */
@@ -418,39 +419,56 @@
   }
 }
 
+/* aboutページ用キービジュアル全体 */
+.pg_about .bl_keyVisual {
+  /* 大きさ設定 */
+  height: 449px;
+
+  /* 一部だけ背景色を塗る */
+  background: linear-gradient(to left, #222 198px, transparent 198px);
+}
+
 /* キービジュアル（画像） */
-.bl_keyVisual_imgWrapper {
-  /* 余白設定 */
-  margin: 0;
+.bl_keyVisual_img {
+  /*--- サイズ設定      
+      sp用:　w=287px, h=580px
+      tb用:  w=660px, h=890px
+    ---*/
+  width: max(calc(17.9375rem + ((1vw - 3.75px) * 79.6438)), 287px);
+  height: max(calc(36.25rem + ((1vw - 3.75px) * 78.8804)), 580px);
+  -o-object-fit: cover;
+  object-fit: cover;
 
-  img {
+  /* タブレット幅以上用 */
+  @include m.mediaQueryMin(md) {
     /*サイズ設定 */
-    width: max(calc(17.9375rem + ((1vw - 3.75px) * 79.6438)), 287px);
-    height: max(calc(36.25rem + ((1vw - 3.75px) * 78.8804)), 580px);
-    -o-object-fit: cover;
-    object-fit: cover;
-
-    /* タブレット幅以上用 */
-    @include m.mediaQueryMin(md) {
-      /*サイズ設定 */
-      width: max(calc(37.5rem + ((1vw - 7.68px) * 74.4048)), 600px);
-      height: min(calc(55.625rem + ((1vw - 7.68px) * -37.2024)), 890px);
-    }
-
-    /* PC幅以上用 */
-    @include m.mediaQueryMin(lg) {
-      /*サイズ設定 */
-      width: 1100px;
-      height: 640px;
-    }
+    width: max(calc(37.5rem + ((1vw - 7.68px) * 74.4048)), 600px);
+    height: min(calc(55.625rem + ((1vw - 7.68px) * -37.2024)), 890px);
   }
+
+  /* PC幅以上用 */
+  @include m.mediaQueryMin(lg) {
+    /*サイズ設定 */
+    width: 1100px;
+    height: 640px;
+  }
+}
+
+/* aboutページ用キービジュアル（画像） */
+.pg_about .bl_keyVisual_img {
+  /*--- サイズ設定      
+      sp用:　w=287px, h=387px
+      tb用:  w=587px, h=529px 
+    ---*/
+  width: max(calc(17.9375rem + ((1vw - 3.75px) * 76.3359)), 287px);
+  height: max(calc(24.1875rem + ((1vw - 3.75px) * 36.1323)), 387px);
 }
 
 /* 文字のまとまり */
 .bl_keyVisual_body {
   position: absolute;
-  top: max(calc(11rem + ((1vw - 3.75px) * 39.4402)), 176px);
-  right: max(calc(1.25rem + ((1vw - 3.75px) * 15.2672)), 20px);
+  top: 176px;
+  left: 110px;
 
   /* タブレット幅以上用 */
   @include m.mediaQueryMin(md) {
@@ -464,42 +482,45 @@
   }
 }
 
+/* aboutページ用文字のまとまり */
+.pg_about .bl_keyVisual_body {
+  top: 149px;
+}
+
 /* キャッチコピー（小） */
 .bl_keyVisual_smallCopy {
   /* 文字設定 */
   font-family: "Montserrat", "游ゴシック", "YuGothic", sans-serif;
   color: #fff;
-  font-weight: Bold;
-  @include m.letterSpacingAdjustment(0.063em);
-  @include m.lineHeightAdjustment(1);
+  font-weight: map-get(v.$fontweights, bold);
+  letter-spacing: 0.063em;
+  @include m.lineHeightAdjustment(1.3125);
 
   /* 余白設定 */
-  padding-bottom: 2px;
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 10px;
 
   /* 文字調整 */
+  /*
   &::before {
-    margin-top: 2px;
+    margin-top: 0px;
   }
 
   &::after {
-    margin-bottom: 2px;
-  }
+    margin-bottom: 0px;
+  }*/
 
   /* タブレット幅以上用 */
   @include m.mediaQueryMin(md) {
     /* 文字設定 */
     font-size: min(calc(1rem + ((1vw - 0.48rem) * 0.5952)), 1.25rem);
-
-    /* 余白設定 */
-    padding-bottom: 2px;
   }
 
   /* PC幅以上用 */
   @include m.mediaQueryMin(lg) {
     /* 文字設定 */
     font-size: 1.25rem;
-    @include m.letterSpacingAdjustment(0);
+    letter-spacing: 0;
 
     /* 余白設定 */
     padding-bottom: 0;
@@ -519,24 +540,25 @@
 .bl_keyVisual_bigCopy {
   /* 文字設定 */
   color: #fff;
-  font-weight: 800;
+  font-weight: map-get(v.$fontweights, extrabold);
   font-size: 3.5rem;
-  @include m.letterSpacingAdjustment(0.063em);
+  letter-spacing: 0.063em;
   @include m.lineHeightAdjustment(0.946429);
 
   /* 余白設定 */
-  padding: 10px 0;
+  padding: 0;
   margin-top: 0;
   margin-bottom: 0;
 
   /* 文字調整 */
+  /*
   &::before {
     margin-top: 6px;
   }
 
   &::after {
     margin-bottom: 6px;
-  }
+  }*/
 
   /* タブレット幅以上用 */
   @include m.mediaQueryMin(md) {
@@ -548,7 +570,7 @@
   @include m.mediaQueryMin(lg) {
     /* 文字設定 */
     font-size: 4.5rem;
-    @include m.letterSpacingAdjustment(0);
+    letter-spacing: 0;
     @include m.lineHeightAdjustment(1.194444);
 
     /* 文字調整 */
@@ -560,6 +582,13 @@
       margin-bottom: 2px;
     }
   }
+}
+
+/* aboutページ用キャッチコピー（大） */
+.pg_about .bl_keyVisual_bigCopy {
+  /* 文字設定 */
+  font-size: 3.25rem;
+  letter-spacing: 0;
 }
 
 /*----------------------
@@ -628,9 +657,9 @@
 .bl_overlay_txt {
   /* 文字設定 */
   font-family: "Montserrat", "游ゴシック", "YuGothic", sans-serif;
-  font-weight: 500;
+  font-weight: map-get(v.$fontweights, medium);
   font-size: 0.875rem;
-  @include m.letterSpacingAdjustment(0em);
+  letter-spacing: 0;
   @include m.lineHeightAdjustment(2);
 
   /* 余白設定 */
@@ -699,7 +728,7 @@
 .bl_card_txt {
   /* 文字設定 */
   font-family: "Montserrat", "游ゴシック", "YuGothic", sans-serif;
-  font-weight: 500;
+  font-weight: map-get(v.$fontweights, medium);
   @include m.lineHeightAdjustment(1);
 
   /* 余白設定 */
@@ -770,9 +799,9 @@
 .bl_vertPosts_date {
   /* 文字設定 */
   color: #cecece;
-  font-weight: 700;
+  font-weight: map-get(v.$fontweights, bold);
   font-size: 0.625rem;
-  @include m.letterSpacingAdjustment(0.015em);
+  letter-spacing: 0.015em;
 }
 
 /* 記事名（ポストアイテム） */
@@ -783,7 +812,7 @@
   /* 文字設定 */
   color: v.$base-color;
   font-family: "Montserrat", "游ゴシック", "YuGothic", sans-serif;
-  font-weight: 700;
+  font-weight: map-get(v.$fontweights, bold);
   font-size: 0.75rem;
   @include m.lineHeightAdjustment(1.666666);
 
@@ -872,9 +901,9 @@
 .el_sectionTtl {
   /* 文字設定 */
   color: v.$base-color;
-  font-weight: 800;
+  font-weight: map-get(v.$fontweights, extrabold);
   font-size: 1.75rem;
-  @include m.letterSpacingAdjustment(0.068em);
+  letter-spacing: 0.068em;
 
   /* 余白設定 */
   margin-top: 0;
@@ -885,6 +914,11 @@
     /* 文字設定 */
     font-size: 2rem;
   }
+}
+
+.pg_about .el_sectionTtl {
+  /* 文字設定 */
+  font-size: 2rem;
 }
 
 /*----------------------
@@ -898,7 +932,7 @@
   /* 文字設定 */
   color: v.$base-color;
   font-family: "Montserrat", "游ゴシック", "YuGothic", sans-serif;
-  font-weight: 500;
+  font-weight: map-get(v.$fontweights, medium);
   @include m.lineHeightAdjustment(2);
 
   /* 余白設定 */
@@ -913,6 +947,27 @@
   &::after {
     margin-bottom: -5.5px;
   }
+}
+
+/* aboutページ用セクションメッセージ */
+.pg_about .el_sectionMsg {
+  /* 文字設定 */
+  font-family: "Montserrat", "Noto Sans JP", sans-serif;
+  font-weight: map-get(v.$fontweights, bold);
+
+  /* 余白設定 */
+  margin-bottom: 40px;
+}
+
+/* セクションのメインメッセージ */
+.el_sectionSummary {
+  /* 文字設定 */
+  font-family: "Montserrat", "Noto Sans JP", sans-serif;
+  font-weight: map-get(v.$fontweights, bold);
+  font-size: 1.5rem;
+
+  /* 余白設定 */
+  margin: 30px 0;
 }
 
 /*----------------------
@@ -937,7 +992,7 @@
   color: #fff;
   font-size: bold;
   font-size: 0.75rem;
-  @include m.letterSpacingAdjustment(0.015em);
+  letter-spacing: 0.015em;
 }
 
 /*----------------------
@@ -947,9 +1002,9 @@
   /* 文字設定 */
   color: #fff;
   font-size: 0.625rem;
-  font-weight: 500;
+  font-weight: map-get(v.$fontweights, medium);
   white-space: nowrap;
-  @include m.letterSpacingAdjustment(0.015em);
+  letter-spacing: 0.015em;
 
   /* 余白設定 */
   margin: 0;
