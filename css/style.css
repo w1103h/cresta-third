@@ -391,11 +391,6 @@ img {
     width: max(32.4404761905vw + 312.8571428571px, 562px);
   }
 }
-@media screen and (min-width: 1440px) {
-  .bl_keyVisual::after {
-    width: 780px;
-  }
-}
 
 .pg_about .bl_keyVisual,
 .pg_contact .bl_keyVisual {
@@ -423,12 +418,6 @@ img {
   .pg_about .bl_keyVisual::after,
 .pg_contact .bl_keyVisual::after {
     width: max(55.6547619048vw + -21.4285714286px, 406px);
-  }
-}
-@media screen and (min-width: 1440px) {
-  .pg_about .bl_keyVisual::after,
-.pg_contact .bl_keyVisual::after {
-    width: 780px;
   }
 }
 
@@ -1061,20 +1050,20 @@ img {
   border-top: 1px solid #ddd;
 }
 .bl_horizTable table {
-  width: 100%;
   border-collapse: collapse;
   margin-bottom: 40px;
+  margin-right: 0;
+  margin-left: auto;
+  width: 100%;
 }
 @media screen and (min-width: 768px) {
   .bl_horizTable table {
-    width: calc(100% - 30px);
-    margin-left: 30px;
+    width: max(18.1547619048vw + 538.5714285714px, 678px);
   }
 }
 @media screen and (min-width: 1440px) {
   .bl_horizTable table {
-    width: calc(100% - 300px);
-    margin-left: 300px;
+    width: 800px;
   }
 }
 .bl_horizTable th,

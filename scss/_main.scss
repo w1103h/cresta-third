@@ -466,10 +466,6 @@
       @include m.viewport-scale(width, md, 562px, lg, 780px);
     }
 
-    @include m.media-query-min(lg) {
-      width: 780px;
-    }
-
     // 位置
     position: absolute;
     top: 0;
@@ -509,10 +505,6 @@
       @include m.viewport-scale(width, md, 406px, lg, 780px);
     }
 
-    @include m.media-query-min(lg) {
-      width: 780px;
-    }
-
     height: 100%;
   }
 }
@@ -524,7 +516,7 @@
   // 大きさ -----
   //  sm: w=287px, h=580px
   //  md: w=600px, h=890px
-  //  lg: w=1100px, 640px
+  //  lg: w=1100px, h=640px
   // --------------------------
   @include m.viewport-scale(width, sm, 287px, md, 600px);
   @include m.viewport-scale(height, sm, 580px, md, 890px);
@@ -1213,23 +1205,29 @@
   border-top: 1px solid #ddd;
 
   table {
-    width: 100%;
-
     // ボーダー設定
     border-collapse: collapse;
 
     // 余白設定
     margin-bottom: 40px;
 
-    // 右寄せにする
+    // 右寄せにする（md以下）
+    margin-right: 0;
+    margin-left: auto;
+
+    // 大きさ -----
+    // sm: width=100%
+    // md: width=678px
+    // lg: width=800px
+    // -----------------
+    width: 100%;
+
     @include m.media-query-min(md) {
-      width: calc(100% - 30px);
-      margin-left: 30px;
+      @include m.viewport-scale(width, md, 678px, lg, 800px);
     }
 
     @include m.media-query-min(lg) {
-      width: calc(100% - 300px);
-      margin-left: 300px;
+      width: 800px;
     }
   }
 
