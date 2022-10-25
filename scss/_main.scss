@@ -1540,6 +1540,7 @@
 
 // チェックボックス本体
 .bl_checkbox_input {
+  position: relative;
   display: inline-block;
   align-items: center;
 
@@ -1562,6 +1563,26 @@
 
   // 余白
   margin-right: 10px;
+
+  // チェックマークを定義
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+
+    // チェックマーク
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-weight: 900;
+    font-size: 0.8rem;
+    opacity: 0;
+  }
+
+  &:checked::after {
+    opacity: 1;
+  }
 }
 
 // 文字
