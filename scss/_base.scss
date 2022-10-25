@@ -1,13 +1,14 @@
-/*------------------------------------------------
-    ファイル名：_base.scss
-    機能：ベーススタイルを記述する
---------------------------------------------------*/
+// ------------------------------------------------
+//  ファイル名：_base.scss
+//  機能：ベーススタイルを記述する
+// ------------------------------------------------
 body {
   margin: 0;
-
-  color: #222222;
-  font-family: "Montserrat", "Noto Sans JP", sans-serif;
+  color: #333;
+  font-family: Montserrat, "Noto Sans JP", sans-serif;
   line-height: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 button,

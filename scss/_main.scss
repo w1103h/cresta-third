@@ -1,181 +1,239 @@
 @use "mixin" as m;
 @use "variables" as v;
 
-/*------------------------------------------------
-    ファイル名：_main.scss
-    機能：webページ全体のスタイルを記述する
---------------------------------------------------*/
+// ------------------------------------------------
+// ファイル名：_main.scss
+//  機能：webページ全体のスタイルを記述する
+// ------------------------------------------------
 
-/*----------------------
-  レイアウト
-------------------------*/
-/* ヘッダーエリア */
+// ----------------------
+// レイアウト
+// ----------------------
+
+// ヘッダーエリア
 .ly_header {
-  /* ヘッダーとキービジュアルを重ねる */
+  // ヘッダーとキービジュアルを重ねる
   position: absolute;
 
-  /* 最前列に描画する */
+  // 最前列に描画する
   z-index: 99;
 
-  /* 大きさ設定をborderまで含める */
+  // 大きさ設定をborderまで含める
   box-sizing: border-box;
 
-  /* 大きさ設定 */
+  // 大きさ設定
   width: 100%;
 
-  /* 余白設定 */
-  padding: max(calc(1.25rem + ((1vw - 3.75px) * 3.5115)), 20px) max(calc(0.9375rem + ((1vw - 3.75px) * 3.8168)), 15px);
+  // 余白設定 -----
+  //  sm: top=20px, right=15px, bottom=20px, left=15px
+  //  md: top=33.8px, right=30px, bottom=33.8px, left=30px
+  //  lg: top=30px, right=58px, bottom=30px, left=58px
+  // --------------------------
+  @include m.viewport-scale(padding-top, sm, 20px, md, 33.8px);
+  @include m.viewport-scale(padding-right, sm, 15px, md, 30px);
+  @include m.viewport-scale(padding-bottom, sm, 20px, md, 33.8px);
+  @include m.viewport-scale(padding-left, sm, 15px, md, 30px);
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    padding: min(calc(2.1125rem + ((1vw - 7.68px) * -0.5655)), 33.8px)
-      max(calc(1.875rem + ((1vw - 7.68px) * 4.1667)), 30px);
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(padding-top, md, 33.8px, lg, 30px);
+    @include m.viewport-scale(padding-right, md, 30px, lg, 58px);
+    @include m.viewport-scale(padding-bottom, md, 33.8px, lg, 30px);
+    @include m.viewport-scale(padding-left, md, 30px, lg, 58px);
   }
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
+  @include m.media-query-min(lg) {
     padding: 30px 58px;
   }
 }
 
-/* HOMEページ用記事エリア */
-.pg_home .ly_article {
-  padding-top: 80px;
+// aboutページ用、contactページ用ヘッダーエリア
+.pg_about .ly_header,
+.pg_contact .ly_header {
+  // 余白設定 -----
+  //  sm: top=19.8px, right=15px, bottom=19.8px, left=15px
+  //  md: top=29.8px, right=30px, bottom=29.8px, left=30px
+  //  lg: top=30px, right=58px, bottom=30px, left=58px
+  // --------------------------
+  @include m.viewport-scale(padding-top, sm, 19.8px, md, 29.8px);
+  @include m.viewport-scale(padding-right, sm, 15px, md, 30px);
+  @include m.viewport-scale(padding-bottom, sm, 19.8px, md, 29.8px);
+  @include m.viewport-scale(padding-left, sm, 15px, md, 30px);
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    padding-top: max(calc(5rem + ((1vw - 7.68px) * 5.9524)), 80px);
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(padding-top, md, 29.8px, lg, 30px);
+    @include m.viewport-scale(padding-right, md, 30px, lg, 58px);
+    @include m.viewport-scale(padding-bottom, md, 29.8px, lg, 30px);
+    @include m.viewport-scale(padding-left, md, 30px, lg, 58px);
   }
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
+  @include m.media-query-min(lg) {
+    padding: 30px 58px;
+  }
+}
+
+// 記事エリア
+.ly_article {
+  padding-top: 80px;
+
+  @include m.media-query-min(md) {
+    //    padding-top: 80px;
+    @include m.viewport-scale(padding-top, md, 80px, lg, 120px);
+  }
+
+  @include m.media-query-min(lg) {
     padding-top: 120px;
   }
 }
 
-/* ABOUTページ用、CONTACTページ用記事エリア */
+// ABOUTページ用、CONTACTページ用記事エリア
 .pg_about .ly_article,
 .pg_contact .ly_article {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding: 40px 0;
+
+  @include m.media-query-min(md) {
+    //  padding: 40px 0;
+    @include m.viewport-scale(padding-top, md, 40px, lg, 60px);
+    @include m.viewport-scale(padding-bottom, md, 40px, lg, 60px);
+  }
+
+  @include m.media-query-min(lg) {
+    padding: 60px 0;
+  }
 }
 
-/* コンテンツエリア */
+// コンテンツエリア
 .ly_cont {
-  position: relative;
+  // 大きさ
+  max-width: 1100px;
+  margin: 0 auto;
 
-  /* 余白設定 */
-  padding: 40px max(calc(0.9375rem + ((1vw - 3.75px) * 5.137)), 15px);
+  // 余白 -----
+  //  sm: top=40px, right=15px, bottom=40px, left=15px
+  //  md: top=40px, right=30px, bottom=40px, left=30px
+  //  md: top=60px, right=30px, bottom=60px, left=30px
+  // --------------------------
+  padding-top: 40px;
+  padding-bottom: 40px;
+  @include m.viewport-scale(padding-right, sm, 15px, md, 30px);
+  @include m.viewport-scale(padding-left, sm, 15px, md, 30px);
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 余白設定 */
-    padding: max(calc(2.5rem + ((1vw - 7.68px) * 2.9762)), 40px) max(calc(1.875rem + ((1vw - 7.68px) * 20.8333)), 30px);
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(padding-top, md, 40px, lg, 60px);
+    @include m.viewport-scale(padding-bottom, md, 40px, lg, 60px);
   }
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    /* 余白設定 */
-    padding: 60px max(calc(50vw - 550px), 170px);
-    max-width: 1100px;
+  @include m.media-query-min(lg) {
+    padding: 60px 30px;
   }
 
-  /* オーバーレイ要素用 */
+  // オーバーレイ要素用
   &.ly_cont__overlay {
+    // 余白設定
     padding: 0;
 
-    /* タブレット幅以上用 */
-    @include m.mediaQueryMin(md) {
-      /* 余白設定 */
-      padding: 0 max(calc(0.0625rem + ((1vw - 7.68px) * 25.1488)), 0px);
-    }
-
-    /* PC幅以上用 */
-    @include m.mediaQueryMin(lg) {
-      /* 余白設定 */
-      padding: 0 max(calc(50vw - 550px), 170px);
-      max-width: 1100px;
+    @include m.media-query-min(lg) {
+      padding: 0 170px;
     }
   }
 
-  /* 背景色を設定 */
-  &.ly_cont__gray {
-    z-index: -1;
-    background-color: #f0f0f0;
-  }
-
-  /* 2カラム */
+  // 2カラム（スマホ幅、タブレット幅では１カラム）
   &.ly_cont__col2 {
-    /*  margin-bottom: -40px;*/
-
     & > *:last-child {
       margin-bottom: 0;
     }
 
-    /* PC幅以上用 */
-    @include m.mediaQueryMin(lg) {
+    // PC幅以上でのみ２カラム
+    @include m.media-query-min(lg) {
       display: flex;
     }
   }
 }
 
-/* ２カラムコンテンツエリア（内側） */
+// contactページ用コンテンツエリア
+.pg_contact .ly_cont {
+  // 余白 -----
+  //  sm: top=40px, right=15px, bottom=40px, left=15px
+  //  md: top=40px, right=50px, bottom=40px, left=50px
+  //  md: top=60px, right=50px, bottom=60px, left=50px
+
+  padding-top: 40px;
+  padding-bottom: 40px;
+  @include m.viewport-scale(padding-right, sm, 15px, md, 50px);
+  @include m.viewport-scale(padding-left, sm, 15px, md, 50px);
+
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(padding-top, md, 40px, lg, 60px);
+    @include m.viewport-scale(padding-bottom, md, 40px, lg, 60px);
+  }
+
+  @include m.media-query-min(lg) {
+    // 大きさ
+    max-width: 700px;
+
+    // 余白
+    padding: 60px 50px;
+    margin: 0 auto;
+  }
+}
+
+// ２カラムコンテンツエリア（内側）
 .ly_cont__col2 .ly_cont_inner {
+  // 余白設定
   margin-bottom: 40px;
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    /* 余白設定 */
+  @include m.media-query-min(lg) {
     margin-right: 60px;
 
-    /* 一番右の要素に右マージンは不要 */
+    // 一番右の要素に右マージンは不要
     &:nth-of-type(2n) {
       margin-right: 0;
     }
   }
 }
 
-/* フッターエリア */
+// フッターエリア
 .ly_footer {
   width: 100%;
   height: 50px;
   background-color: #525252;
 
-  /* 上下中央揃え */
+  // 上下中央揃え
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/*----------------------
-  ヘッダー
-------------------------*/
-/* ヘッダー全体 */
+// ----------------------
+// ヘッダー
+// ----------------------
+
+// ヘッダー全体
 .bl_headerUtils {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* サイトロゴ */
+// サイトロゴ
 .bl_headerUtils_logo {
   display: block;
   width: 189px;
 
-  /* 余白設定 */
-  margin: 0;
-
-  font-size: 0;
-
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    width: max(calc(11.8125rem + ((1vw - 7.68px) * 10.5655)), 189px);
+  @include m.media-query-min(md) {
+    // width ---
+    //  md: 189px
+    //  lg: 260px
+    // --------------------------
+    @include m.viewport-scale(width, md, 189px, lg, 260px);
   }
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
+  @include m.media-query-min(lg) {
     width: 260px;
   }
+
+  // 余白設定
+  margin: 0;
+  font-size: 0;
 
   img {
     width: 100%;
@@ -183,100 +241,96 @@
   }
 }
 
-/*----------------------
-  ヘッダーナビゲーション
-------------------------*/
-/* ヘッダーナビゲーション全体 */
+// ----------------------
+// ヘッダーナビゲーション
+// ----------------------
+
+// ヘッダーナビゲーション全体
 .bl_headerNav {
-  /* ナビゲーションが表示時は、
-    画面の前面に表示させる */
+  // ナビゲーションが表示時は、画面の前面に表示させる
   position: fixed;
   top: 0;
   right: 0;
   z-index: 2;
 
-  /* 大きさ設定 */
+  // 大きさ設定
   width: 100%;
   height: 100vh;
 
-  /* 最初は非表示（ハンバーガーボタンクリックで表示） */
+  // 最初は非表示（ハンバーガーボタンクリックで表示）
   opacity: 0;
   visibility: hidden;
 }
 
-/* ヘッダーナビゲーションを表示する */
+// ヘッダーナビゲーションを表示する
 .bl_headerNav.is_fade {
-  /* 不透明（黒背景） */
-  opacity: 100%;
+  // 不透明（黒背景）
+  opacity: 1;
   visibility: visible;
 }
 
-/* ヘッダーナビゲーション（内側） */
+// ヘッダーナビゲーション（内側）
 .bl_headerNav_inner {
-  /* 大きさ設定 */
+  // 大きさ設定
   width: 100%;
   height: 100vh;
 
-  /* 中央揃え */
+  // 中央揃え
   text-align: center;
 
-  /* リストの装飾をクリアする */
+  // リストの装飾をクリアする
   list-style: none;
 
-  /* 背景色を設定 */
-  background-color: #222222;
-  opacity: 100%;
+  // 背景色を設定
+  background-color: #222;
+  opacity: 1;
 
-  /* 余白設定 */
-  padding: 180px 0 0 0;
+  // 余白設定
+  padding: 180px 0 0;
   margin: 0;
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    /* 大きさ設定 */
+  // PC幅以上用では、ナビゲーション以外のエリアを薄暗くさせる
+  @include m.media-query-min(lg) {
     width: 520px;
 
-    /* 位置設定 */
+    // 位置設定
     position: absolute;
     top: 0;
     right: 0;
 
-    /* 背景色を透過させる */
-    opacity: 95%;
+    // 背景色を透過させる
+    opacity: 0.95;
 
-    /* ナビゲーションリンク以外のエリアを薄暗くさせる */
+    // ナビゲーションリンク以外のエリアを薄暗くさせる
     &::before {
       display: block;
       content: "";
-
       width: calc(100vw - 520px);
       height: 100vh;
-
       position: absolute;
       top: 0;
       right: 520px;
-
       background-color: #222;
-      opacity: 60%;
+      opacity: 0.6;
     }
   }
 }
 
-/* ナビゲーションリンク（サイトロゴ） */
+// ナビゲーションリンク（サイトロゴ）
 .bl_headerNav_siteLogo {
-  /* 中央揃え */
+  // 中央揃え
   display: inline-block;
 
-  /* 余白設定 */
+  // 余白設定
   margin-bottom: 40px;
 }
 
-/* ナビゲーションリンク（セクション） */
+// ナビゲーションリンク（セクション）
 .bl_headerNav_link {
-  /* 中央揃え */
+  // 中央揃え
   display: inline-block;
 
-  /* 文字設定 */
+  // 文字設定
   text-decoration: none;
   color: #fff;
   font-weight: map-get(v.$fontweights, extrabold);
@@ -284,275 +338,395 @@
   letter-spacing: 0.068em;
   white-space: nowrap;
 
-  /* 余白設定 */
+  // 余白設定
   margin-bottom: 30px;
 }
 
-/* ハンバーガーボタン */
+// ハンバーガーボタン
 .bl_humbergerBtn {
   display: flex;
   align-items: center;
 
-  /* 元のデザインを消去 */
+  // 元のデザインを消去
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background-color: transparent;
   border: none;
 
-  /* 余白設定 */
+  // 余白設定
   padding: 0;
 }
 
-/* ハンバーガーボタンアイコン */
+// ハンバーガーボタンアイコン
 .bl_humbergerBtn_icon {
-  /* 基準座標を設定 */
+  // 基準座標を設定
   position: relative;
 
-  /* 最前面に描画する */
+  // 最前面に描画する
   z-index: 3;
 
-  /* ブロック要素に設定 */
+  // ブロック要素に設定
   display: block;
-
   width: 22px;
   height: 10px;
 
-  /* 余白設定 */
+  // 余白設定
   margin-right: 7px;
   padding: 0;
 }
 
-/* ハンバーガーボタン文字 */
+// ハンバーガーボタン文字
 .bl_humbergerBtn_txt {
-  /* 最前面に描画する */
+  // 最前面に描画する
   z-index: 3;
 
-  /* 文字設定 */
+  // 文字設定
   color: #fff;
   font-weight: map-get(v.$fontweights, extrabold);
   font-size: 0.625rem;
   letter-spacing: 0.005em;
 
-  /* 余白設定 */
+  // 余白設定
   margin: 0;
 }
 
-/* ハンバーガーボタン（オープン）：共通 */
+// ハンバーガーボタン（オープン）：共通
 .bl_humbergerBtn_bar {
   position: absolute;
   display: block;
-
   width: 22px;
   height: 2px;
-  background-color: #ffffff;
+  background-color: #fff;
   transition: all 0.3s;
   border-radius: 100vh;
 }
 
-/* ハンバーガーボタン（オープン）：一段目のバー */
+// ハンバーガーボタン（オープン）：一段目のバー
 .bl_humbergerBtn_bar.bl_humbergerBtn_bar__top {
   top: -1px;
 }
 
-/* ハンバーガーボタン（オープン）：二段目のバー */
+// ハンバーガーボタン（オープン）：二段目のバー
 .bl_humbergerBtn_bar.bl_humbergerBtn_bar__mid {
   top: 50%;
-
   transform: translateY(-50%);
 }
 
-/* ハンバーガーボタン（オープン：三段目のバー */
+// ハンバーガーボタン（オープン：三段目のバー
 .bl_humbergerBtn_bar.bl_humbergerBtn_bar__bottom {
   bottom: -1px;
 }
 
-/* ハンバーガーボタン（クローズ）：一段目のバー */
+// ハンバーガーボタン（クローズ）：一段目のバー
 .bl_humbergerBtn.is_close .bl_humbergerBtn_bar.bl_humbergerBtn_bar__top {
-  transform: translate(0px, 4px) rotate(30deg);
+  transform: translate(0, 4px) rotate(30deg);
 }
 
-/* ハンバーガーボタン（クローズ）：二段目のバー */
+// ハンバーガーボタン（クローズ）：二段目のバー
 .bl_humbergerBtn.is_close .bl_humbergerBtn_bar.bl_humbergerBtn_bar__mid {
   opacity: 0;
 }
 
-/* ハンバーガーボタン（クローズ）：三段目のバー */
+// ハンバーガーボタン（クローズ）：三段目のバー
 .bl_humbergerBtn.is_close .bl_humbergerBtn_bar.bl_humbergerBtn_bar__bottom {
-  transform: translate(0px, -6px) rotate(-30deg);
+  transform: translate(0, -6px) rotate(-30deg);
 }
 
-/* ハンバーガーボタンのオープン時はスクロールしない */
+// ハンバーガーボタンのオープン時はスクロールしない
 .is_noscroll {
   overflow: hidden;
 }
 
-/*----------------------
-  キービジュアル
-------------------------*/
-/* キービジュアル全体 */
+// ----------------------
+// キービジュアル
+// ----------------------
+
+// キービジュアル全体
 .bl_keyVisual {
   position: relative;
   height: 100vh;
-  /* 一部だけ背景色を塗る */
 
-  background: linear-gradient(
-    to right,
-    #fff max(calc(5.75rem + ((1vw - 3.75px) * 29.0076)), 92px),
-    #222 max(calc(5.75rem + ((1vw - 3.75px) * 29.0076)), 92px)
-  );
+  &::after {
+    // 背景
+    display: block;
+    content: "";
+    width: 283px;
+    height: 100%;
+    background-color: #222;
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 一部だけ背景色を塗る */
-    background: linear-gradient(
-      to right,
-      #fff max(calc(12.875rem + ((1vw - 7.68px) * 67.5595)), 206px),
-      #222 max(calc(12.875rem + ((1vw - 7.68px) * 67.5595)), 206px)
-    );
-  }
+    // width -----
+    //  sm: 283px
+    //  md: 562px
+    //  lg: 780px
+    // --------------------------
+    @include m.viewport-scale(width, sm, 283px, md, 562px);
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    /* 一部だけ背景色を塗る */
-    background: linear-gradient(to right, #fff 660px, #222 660px);
+    @include m.media-query-min(md) {
+      @include m.viewport-scale(width, md, 562px, lg, 780px);
+    }
+
+    @include m.media-query-min(lg) {
+      width: 780px;
+    }
+
+    // 位置
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
   }
 }
 
-/* aboutページ用キービジュアル全体 */
-.pg_about .bl_keyVisual {
-  /* 大きさ設定 */
-  height: 449px;
+// about/contactページ用キービジュアル全体
+.pg_about .bl_keyVisual,
+.pg_contact .bl_keyVisual {
+  // height -----
+  //  sm: 449px
+  //  md: 615px
+  //  lg: 464px
+  // --------------------------
+  @include m.viewport-scale(height, sm, 449px, md, 615px);
 
-  /* 一部だけ背景色を塗る */
-  background: linear-gradient(to left, #222 198px, transparent 198px);
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(height, md, 615px, lg, 464px);
+  }
+
+  @include m.media-query-min(lg) {
+    height: 464px;
+  }
+
+  &::after {
+    // width -----
+    //  sm: 198px
+    //  md: 406px
+    //  lg: 780px
+    // --------------------------
+    width: 198px;
+    @include m.viewport-scale(width, sm, 198px, md, 406px);
+
+    @include m.media-query-min(md) {
+      @include m.viewport-scale(width, md, 406px, lg, 780px);
+    }
+
+    @include m.media-query-min(lg) {
+      width: 780px;
+    }
+
+    height: 100%;
+  }
 }
 
-/* キービジュアル（画像） */
+// キービジュアル（画像）
 .bl_keyVisual_img {
-  /*--- サイズ設定      
-      sp用:　w=287px, h=580px
-      tb用:  w=660px, h=890px
-    ---*/
-  width: max(calc(17.9375rem + ((1vw - 3.75px) * 79.6438)), 287px);
-  height: max(calc(36.25rem + ((1vw - 3.75px) * 78.8804)), 580px);
+  max-height: 100%;
+
+  // 大きさ -----
+  //  sm: w=287px, h=580px
+  //  md: w=600px, h=890px
+  //  lg: w=1100px, 640px
+  // --------------------------
+  @include m.viewport-scale(width, sm, 287px, md, 600px);
+  @include m.viewport-scale(height, sm, 580px, md, 890px);
+
   -o-object-fit: cover;
   object-fit: cover;
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /*サイズ設定 */
-    width: max(calc(37.5rem + ((1vw - 7.68px) * 74.4048)), 600px);
-    height: min(calc(55.625rem + ((1vw - 7.68px) * -37.2024)), 890px);
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(width, md, 600px, lg, 1100px);
+    @include m.viewport-scale(height, md, 890px, lg, 640px);
   }
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    /*サイズ設定 */
+  @include m.media-query-min(lg) {
     width: 1100px;
     height: 640px;
   }
 }
 
-/* aboutページ用キービジュアル（画像） */
-.pg_about .bl_keyVisual_img {
-  /*--- サイズ設定      
-      sp用:　w=287px, h=387px
-      tb用:  w=587px, h=529px 
-    ---*/
-  width: max(calc(17.9375rem + ((1vw - 3.75px) * 76.3359)), 287px);
-  height: max(calc(24.1875rem + ((1vw - 3.75px) * 36.1323)), 387px);
+// about/contactページ用キービジュアル（画像）
+.pg_about .bl_keyVisual_img,
+.pg_contact .bl_keyVisual_img {
+  // 大きさ -----
+  //  sm: w=287px, h=387px
+  //  md: w=587px, h=529px
+  //  lg: w=1100px, h=387px
+  // ---------------------------
+  @include m.viewport-scale(width, sm, 287px, md, 587px);
+  @include m.viewport-scale(height, sm, 387px, md, 529px);
+
+  -o-object-fit: cover;
+  object-fit: cover;
+
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(width, md, 587px, lg, 1100px);
+    @include m.viewport-scale(height, md, 529px, lg, 387px);
+  }
+
+  @include m.media-query-min(lg) {
+    width: 1100px;
+    height: 387px;
+  }
 }
 
-/* 文字のまとまり */
+// 文字のまとまり
 .bl_keyVisual_body {
   position: absolute;
-  top: 176px;
-  left: 110px;
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    top: 331px;
-    left: 443px;
+  // 位置 -----
+  //  sm: top=176px, left=110px
+  //  md: top=331px, left=443px
+  //  lg: top=159px, left=954px
+  // ---------------------------
+  @include m.viewport-scale(top, sm, 176px, md, 331px);
+  @include m.viewport-scale(left, sm, 110px, md, 443px);
+
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(top, md, 331px, lg, 159px);
+    @include m.viewport-scale(left, md, 443px, lg, 954px);
   }
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
+
+  @include m.media-query-min(lg) {
     top: 159px;
     left: 954px;
   }
 }
 
-/* aboutページ用文字のまとまり */
+// aboutページ用文字のまとまり
 .pg_about .bl_keyVisual_body {
-  top: 149px;
-  left: 57px;
+  // 位置 -----
+  //  sm: top=149px, left=57px
+  //  md: top=220px, left=358px
+  //  lg: top=156px, left=839px
+  // ---------------------------
+  @include m.viewport-scale(top, sm, 149px, md, 220px);
+  @include m.viewport-scale(left, sm, 57px, md, 358px);
+
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(top, md, 220px, lg, 156px);
+    @include m.viewport-scale(left, md, 358px, lg, 839px);
+  }
+
+  @include m.media-query-min(lg) {
+    top: 156px;
+    left: 839px;
+  }
 }
 
-/* キャッチコピー（小） */
+// contactページ用文字のまとまり
+.pg_contact .bl_keyVisual_body {
+  // 位置 -----
+  //  sm: top=129px, left=68px
+  //  md: top=132px, left=432px
+  //  lg: top=156px, left=894px
+  // ---------------------------
+  @include m.viewport-scale(top, sm, 129px, md, 132px);
+  @include m.viewport-scale(left, sm, 68px, md, 432px);
+
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(top, md, 132px, lg, 156px);
+    @include m.viewport-scale(left, md, 432px, lg, 894px);
+  }
+
+  @include m.media-query-min(lg) {
+    top: 156px;
+    left: 894px;
+  }
+}
+
+// キャッチコピー（小）
 .bl_keyVisual_smallCopy {
-  /* 文字設定 */
-  font-family: "Montserrat", "游ゴシック", "YuGothic", sans-serif;
+  // 文字
+  font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
   color: #fff;
   font-weight: map-get(v.$fontweights, bold);
   letter-spacing: 0.063em;
-  @include m.lineHeightAdjustment(1.3125);
+  @include m.line-height-adjustment(1.3125);
 
-  /* 余白設定 */
+  // フォントサイズ -----
+  //  sm: 1rem
+  //  md: 1.25rem
+  //  lg: 1.25rem
+  // ---------------------------
+  @include m.viewport-scale(font-size, sm, 1rem, md, 1.25rem);
+
+  @include m.media-query-min(md) {
+    font-size: 1.25rem;
+  }
+
+  @include m.media-query-min(lg) {
+    letter-spacing: 0;
+    @include m.line-height-adjustment(1.25);
+  }
+
+  // 余白設定
   margin-top: 0;
   margin-bottom: 10px;
 
-  /* 文字調整 */
+  @include m.media-query-min(lg) {
+    padding-bottom: 0;
+  }
 
+  // 文字調整
   &::before {
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   &::after {
-    margin-bottom: 0px;
-  }
-
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 文字設定 */
-    font-size: min(calc(1rem + ((1vw - 0.48rem) * 0.5952)), 1.25rem);
-  }
-
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    /* 文字設定 */
-    font-size: 1.25rem;
-    letter-spacing: 0;
-    @include m.lineHeightAdjustment(1.25);
-
-    /* 余白設定 */
-    padding-bottom: 0;
-
-    /* 文字調整 */
-    &::before {
-      margin-top: 0px;
-    }
-
-    &::after {
-      margin-bottom: 0px;
-    }
+    margin-bottom: 0;
   }
 }
 
-/* キャッチコピー（大） */
+// aboutページ用キャッチコピー（小）
+.pg_about .bl_keyVisual_smallCopy {
+  // 文字設定
+  letter-spacing: 0;
+
+  @include m.media-query-min(md) {
+    letter-spacing: 0.005em;
+  }
+
+  // 文字調整
+  &::before {
+    padding-top: 1.5px;
+  }
+
+  &::after {
+    padding-bottom: 1.5px;
+  }
+}
+
+// contactページ用キャッチコピー（小）
+.pg_contact .bl_keyVisual_smallCopy {
+  // 文字設定
+  font-size: 1rem;
+  letter-spacing: 0.005em;
+}
+
+// キャッチコピー（大）
 .bl_keyVisual_bigCopy {
-  /* 文字設定 */
+  // 文字設定
   color: #fff;
-  font-weight: map-get(v.$fontweights, extrabold);
   font-size: 3.5rem;
+  font-weight: map-get(v.$fontweights, extrabold);
   letter-spacing: 0.063em;
-  @include m.lineHeightAdjustment(0.946429);
+  @include m.line-height-adjustment(0.946429);
+
   white-space: nowrap;
 
-  /* 余白設定 */
+  @include m.media-query-min(md) {
+    font-size: 4.5rem;
+  }
+
+  @include m.media-query-min(lg) {
+    letter-spacing: 0;
+    @include m.line-height-adjustment(1.194444);
+  }
+
+  // 余白設定
   padding: 0;
   margin: 0;
 
-  /* 文字調整 */
+  // 文字調整
   &::before {
     padding-top: 7.5px;
   }
@@ -561,125 +735,163 @@
     padding-bottom: 7.5px;
   }
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 文字設定 */
-    font-size: min(calc(3.5rem + ((1vw - 0.48rem) * 2.381)), 4.5rem);
-  }
-
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    /* 文字設定 */
-    font-size: 4.5rem;
-    letter-spacing: 0;
-    @include m.lineHeightAdjustment(1.194444);
-
-    /* 文字調整 */
+  @include m.media-query-min(lg) {
     &::before {
-      margin-top: 2px;
+      padding-top: 2px;
     }
 
     &::after {
-      margin-bottom: 2px;
+      padding-bottom: 2px;
     }
   }
 }
 
-/* aboutページ用キャッチコピー（大） */
+// aboutページ用キャッチコピー（大）
 .pg_about .bl_keyVisual_bigCopy {
-  /* 文字設定 */
+  // 文字設定
   font-size: 3.25rem;
   letter-spacing: 0;
 
-  /* 余白設定 */
+  @include m.media-query-min(md) {
+    letter-spacing: 0.063em;
+  }
+
+  @include m.media-query-min(lg) {
+    font-size: 4.5rem;
+  }
+
+  // 余白設定
   margin-bottom: 5px;
 
-  /* 文字調整 */
+  // 文字調整
   &::before {
-    margin-top: 7px;
+    padding-top: 7px;
   }
 
   &::after {
-    margin-bottom: 7px;
+    padding-bottom: 7px;
   }
 }
 
-/*----------------------
-  オーバーレイ
-------------------------*/
-/* オーバーレイ背景 */
+// contactページ用キャッチコピー（大）
+.pg_contact .bl_keyVisual_bigCopy {
+  // 文字
+  font-size: 3.25em;
+  letter-spacing: 0.063em;
+
+  // 文字調整
+  &::before {
+    margin-top: -0.6px;
+  }
+
+  &::after {
+    margin-bottom: -0.6px;
+  }
+
+  @include m.media-query-min(lg) {
+    font-size: 4.5rem;
+
+    &::before {
+      margin-top: 0;
+    }
+
+    &::after {
+      margin-bottom: 0;
+    }
+  }
+
+  // 余白設定
+  margin-bottom: 8px;
+}
+
+// ----------------------
+// オーバーレイ
+// ----------------------
+
+// オーバーレイ背景
 .bl_overlay_bg {
-  /* 背景設定 */
+  // 背景設定
   background-image: url("../img/about-img@2x.jpg");
   background-position: center bottom;
   background-size: cover;
 
-  /* 余白設定 */
-  padding: max(calc(3.125rem + ((1vw - 3.75px) * 2.5445)), 50px) 15px;
+  // 余白 -----
+  //  sm: top=50px, right=15px, bottom=50px, left=15px
+  //  md: top=60px, right=89px, bottom=60px, left=89px
+  //  lg: top=110px, right=auto, bottom=110px, left=50px
+  // --------------------------
+  @include m.viewport-scale(padding-top, sm, 50px, md, 60px);
+  @include m.viewport-scale(padding-right, sm, 15px, md, 89px);
+  @include m.viewport-scale(padding-bottom, sm, 50px, md, 60px);
+  @include m.viewport-scale(padding-left, sm, 15px, md, 89px);
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 余白設定 */
-    padding-top: max(calc(3.75rem + ((1vw - 7.68px) * 7.4405)), 60px);
-    padding-bottom: max(calc(3.75rem + ((1vw - 7.68px) * 7.4405)), 60px);
-    padding-left: min(calc(5.5rem + ((1vw - 7.68px) * -5.6548)), 89px);
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(padding-top, sm, 60px, md, 110px);
+    @include m.viewport-scale(padding-right, sm, 89px, md, 50px);
+    @include m.viewport-scale(padding-bottom, sm, 60px, md, 110px);
   }
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    /* 余白設定 */
+  @include m.media-query-min(lg) {
     padding-top: 110px;
     padding-bottom: 110px;
     padding-left: 50px;
   }
 }
 
-/* オーバーレイ（白背景） */
+// オーバーレイ（白背景）
 .bl_overlay {
-  /* 大きさ設定はボーダーまで含める */
+  // 大きさ設定はボーダーまで含める
   box-sizing: border-box;
 
-  /* 大きさ設定 */
+  // 大きさ
   max-width: 590px;
 
-  /* 前面に描画する */
+  // 前面に描画する
   background-color: #fff;
   z-index: 2;
 
-  /* 余白設定 */
+  // 余白設定
   padding: 50px 30px;
   margin: 0 auto;
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 中央揃えをやめる */
-    margin-left: 0;
-
-    /* 保留（タブレットだけ余白が違う） */
-    /*padding: 50px 30px;*/
+  @include m.media-query-min(lg) {
+    margin-top: 0;
   }
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    /* 余白設定 */
-    margin-top: 0;
+  // 中央揃えをやめる
+  @include m.media-query-min(md) {
+    margin-left: 0;
   }
 }
 
-/* 文字（オーバーレイ） */
+// 文字（オーバーレイ）
 .bl_overlay_txt {
-  /* 文字設定 */
-  font-family: "Montserrat", "游ゴシック", "YuGothic", sans-serif;
+  // 文字設定
+  font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
   font-weight: map-get(v.$fontweights, medium);
   font-size: 0.875rem;
   letter-spacing: 0;
-  @include m.lineHeightAdjustment(2);
+  @include m.line-height-adjustment(2);
 
-  /* 余白設定 */
+  @include m.media-query-min(md) {
+    font-size: 1rem;
+    @include m.line-height-adjustment(2);
+  }
+
+  // 余白設定
   margin-top: 0;
   margin-bottom: 27px;
 
-  /* 文字調整 */
+  @include m.media-query-min(md) {
+    margin-top: 0;
+    margin-bottom: 25px;
+  }
+
+  @include m.media-query-min(lg) {
+    margin-bottom: 30px;
+  }
+
+  // 文字調整
   &::before {
     margin-top: -5px;
   }
@@ -688,17 +900,7 @@
     margin-bottom: -5px;
   }
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 文字設定 */
-    font-size: 1rem;
-    @include m.lineHeightAdjustment(2);
-
-    /* 余白設定 */
-    margin-top: 0;
-    margin-bottom: 25px;
-
-    /* 文字調整 */
+  @include m.media-query-min(md) {
     &::before {
       margin-top: -5.5px;
     }
@@ -707,44 +909,39 @@
       margin-bottom: -5.5px;
     }
   }
-
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    margin-bottom: 30px;
-  }
 }
 
-/*----------------------
-  カード
-------------------------*/
-/* 画像 */
+// ----------------------
+// カード
+// ----------------------
+
+// 画像
 .bl_card_img {
   width: 100%;
   max-width: 520px;
   height: auto;
-
   -o-object-fit: cover;
   object-fit: cover;
 }
 
-/* 文字のまとまり */
+// 文字のまとまり
 .bl_card_body {
-  padding: 28px 0 27px 0;
+  padding: 28px 0 27px;
 
-  /* 最終ブロックのマージンは除去 */
+  // 最終ブロックのマージンは除去
   & > *:last-child {
     margin-bottom: 0;
   }
 }
 
-/* 文字 */
+// 文字
 .bl_card_txt {
-  /* 文字設定 */
-  font-family: "Montserrat", "游ゴシック", "YuGothic", sans-serif;
+  // 文字設定
+  font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
   font-weight: map-get(v.$fontweights, medium);
-  @include m.lineHeightAdjustment(1);
+  @include m.line-height-adjustment(1);
 
-  /* 余白設定 */
+  // 余白設定
   margin-top: 0;
   margin-bottom: 10px;
 
@@ -757,98 +954,94 @@
   }
 }
 
-/*----------------------
-  ポストリスト（縦型）
-------------------------*/
-/* ポストリスト全体 */
+// ----------------------
+// ポストリスト（縦型）
+// ----------------------
+
+// ポストリスト全体
 .bl_vertPosts {
   list-style: none;
-
   max-width: 700px;
 
-  /* 余白設定 */
+  // 余白設定
   padding: 0;
-  margin: 0 0 30px 0;
+  margin: 0 0 30px;
 
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
+  @include m.media-query-min(lg) {
     margin-left: auto;
   }
 }
 
-/* ポストアイテム */
+// ポストアイテム
 .bl_vertPosts_item {
   box-sizing: border-box;
 
-  /* ボーダー設定 */
-  border-bottom: 1px solid #dddddd;
+  // ボーダー設定
+  border-bottom: 1px solid #ddd;
 
-  /* 余白設定 */
+  // 余白設定
   margin-bottom: 20px;
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 余白設定 */
+  @include m.media-query-min(md) {
     margin-bottom: 30px;
   }
 }
 
 .bl_vertPosts_header {
-  /* bl_vertPosts_dateのフォントサイズの方が小さく、
-    要素の高さがずれるため調整 */
+  // bl_vertPosts_dateのフォントサイズの方が小さく、
+  //  要素の高さがずれるため調整
   font-size: 0;
 
-  /* 余白設定 */
+  // 余白設定
   margin-bottom: 9px;
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 余白設定 */
+  @include m.media-query-min(md) {
     margin-bottom: 10px;
   }
 }
 
-/* 日付（ポストアイテム） */
+// 日付（ポストアイテム）
 .bl_vertPosts_date {
-  /* 文字設定 */
+  // 文字設定
   color: #cecece;
   font-weight: map-get(v.$fontweights, bold);
   font-size: 0.625rem;
   letter-spacing: 0.015em;
 }
 
-/* 記事名（ポストアイテム） */
+// 記事名（ポストアイテム）
 .bl_vertPosts_ttl {
   display: block;
   text-decoration: none;
 
-  /* 文字設定 */
-  color: v.$base-color;
-  font-family: "Montserrat", "游ゴシック", "YuGothic", sans-serif;
+  // 文字設定
+  font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
+  color: #333;
   font-weight: map-get(v.$fontweights, bold);
   font-size: 0.75rem;
-  @include m.lineHeightAdjustment(1.666666);
+  @include m.line-height-adjustment(1.666666);
 
-  /* 余白設定 */
+  @include m.media-query-min(md) {
+    font-size: 0.875rem;
+  }
+
+  // 余白設定
   margin-bottom: 7px;
 
-  /* 文字調整 */
+  @include m.media-query-min(md) {
+    margin-bottom: 10px;
+  }
+
+  // 文字調整
   &::before {
     margin-top: -2px;
   }
+
   &::after {
     margin-bottom: -2px;
   }
 
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 文字設定 */
-    font-size: 0.875rem;
-
-    /* 余白設定 */
-    margin-bottom: 10px;
-
-    /* 文字調整 */
+  @include m.media-query-min(md) {
     &::before {
       margin-top: -3px;
     }
@@ -859,13 +1052,13 @@
   }
 }
 
-/*----------------------
-  ２カラムセクション（PC幅でのみ２カラム）
-------------------------*/
-/* ２カラムセクション全体 */
+// ----------------------
+// ２カラムセクション（PC幅でのみ２カラム）
+// ----------------------
+
+// ２カラムセクション全体
 .bl_sectionCol2 {
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
+  @include m.media-query-min(lg) {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -873,168 +1066,843 @@
   }
 }
 
-/* セクションのイメージ画像 */
+// セクションのイメージ画像
 .bl_sectionCol2_img {
-  /* 大きさ設定 */
+  // 大きさ
   width: 100%;
   max-width: 520px;
   height: auto;
 
-  /* アスペクト比を維持したまま
-    ボックス全体を埋めるように拡大縮小 */
-  -o-object-fit: cover;
-  object-fit: cover;
-
-  /* 余白設定 */
-  margin-top: 0;
-  margin-bottom: 30px;
-
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
-    /* 大きさ設定 */
+  @include m.media-query-min(lg) {
+    // 大きさ設定
     max-width: 580px;
-
     margin-left: 80px;
     margin-bottom: 0;
   }
+
+  // アスペクト比を維持したまま
+  //  ボックス全体を埋めるように拡大縮小
+  -o-object-fit: cover;
+  object-fit: cover;
+
+  // 余白設定
+  margin-top: 0;
+  margin-bottom: 30px;
 }
 
-/* セクションのボディ（タイトル、文字、ボタン） */
+// セクションのボディ（タイトル、文字、ボタン）
 .bl_sectionCol2_body {
-  /* PC幅以上用 */
-  @include m.mediaQueryMin(lg) {
+  @include m.media-query-min(lg) {
     width: 440px;
   }
 }
 
-/*----------------------
-  タイトル
-------------------------*/
-/* セクションタイトル */
+// ----------------------
+// 画像＋文書
+// ----------------------
+
+// 画像
+.bl_imgContent_img {
+  height: auto;
+
+  // 大きさ -----
+  // sm: width=340px
+  // md: width=320px
+  // lg: width=420px
+  // ------------------
+  @include m.viewport-scale(width, sm, 340px, md, 320px);
+
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(width, md, 340px, lg, 420px);
+  }
+  @include m.media-query-min(lg) {
+    width: 420px;
+  }
+
+  // 余白設定
+  margin-left: -15px;
+
+  @include m.media-query-min(md) {
+    margin-left: 0;
+  }
+}
+
+// 文書
+.bl_imgContent_content {
+  // 背景をグレーに設定
+  z-index: -1;
+  background-color: #f0f0f0;
+
+  // 画像と背景色を重ねる
+  position: relative;
+  top: -100px;
+  margin-bottom: -100px;
+
+  @include m.media-query-min(md) {
+    top: -85px;
+    margin-bottom: -85px;
+  }
+
+  @include m.media-query-min(lg) {
+    top: -138px;
+    margin-bottom: -138px;
+  }
+
+  // 余白 -----
+  // sm: top=125px, right=29px, bottom=81px, left=28px
+  // md: top=109px, right=29px, bottom=93px, left=40px
+  // lg: top=120px, right=185px, bottom=90px, left=185px
+  // --------------------------------
+  @include m.viewport-scale(padding-top, sm, 125px, md, 109px);
+  @include m.viewport-scale(padding-bottom, sm, 81px, md, 93px);
+  @include m.viewport-scale(padding-left, sm, 28px, md, 40px);
+
+  padding-right: 29px;
+
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(padding-top, md, 109px, lg, 120px);
+    @include m.viewport-scale(padding-right, md, 29px, lg, 185px);
+    @include m.viewport-scale(padding-bottom, md, 93px, lg, 90px);
+    @include m.viewport-scale(padding-left, md, 40px, lg, 185px);
+  }
+
+  @include m.media-query-min(lg) {
+    padding: 120px 185px 90px;
+  }
+
+  p {
+    // 文字設定
+    font-size: 0.875rem;
+    font-weight: map-get(v.$fontweights, bold);
+    @include m.line-height-adjustment(2);
+
+    @include m.media-query-min(md) {
+      font-size: 1rem;
+    }
+
+    // 余白設定
+    margin: 0;
+
+    // 文字調整
+    &::before {
+      margin-top: -4px;
+    }
+
+    &::after {
+      margin-bottom: -4px;
+    }
+  }
+
+  // 文書の幅を狭めて、右に寄せる
+  @include m.media-query-min(md) {
+    width: 415px;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  @include m.media-query-min(lg) {
+    width: 400px;
+  }
+}
+
+// ----------------------
+// 水平テーブル
+// ------------------------
+.bl_horizTable {
+  // 上ボーダーを設定
+  border-top: 1px solid #ddd;
+
+  table {
+    width: 100%;
+
+    // ボーダー設定
+    border-collapse: collapse;
+
+    // 余白設定
+    margin-bottom: 40px;
+
+    // 右寄せにする
+    @include m.media-query-min(md) {
+      width: calc(100% - 30px);
+      margin-left: 30px;
+    }
+
+    @include m.media-query-min(lg) {
+      width: calc(100% - 300px);
+      margin-left: 300px;
+    }
+  }
+
+  th,
+  td {
+    // ボーダーまで含めた大きさを設定する
+    box-sizing: border-box;
+
+    // 大きさ設定
+    height: 60px;
+
+    @include m.media-query-min(md) {
+      height: 56px;
+    }
+
+    // ボーダー設定
+    border-bottom: 1px solid #ddd;
+
+    // 余白設定
+    padding: 0;
+  }
+
+  th {
+    // 大きさ設定
+    width: 163px;
+
+    @include m.media-query-min(md) {
+      width: 144px;
+    }
+
+    // 文字設定
+    text-align: left;
+    font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
+    font-weight: map-get(v.$fontweights, bold);
+    font-size: 0.875rem;
+    letter-spacing: 0.004em;
+
+    @include m.media-query-min(md) {
+      font-size: 1rem;
+      letter-spacing: 0.004em;
+    }
+  }
+
+  td {
+    // 文字設定
+    font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
+    font-weight: map-get(v.$fontweights, regular);
+    font-size: 0.875rem;
+    letter-spacing: 0.004em;
+
+    @include m.media-query-min(md) {
+      font-weight: map-get(v.$fontweights, medium);
+      font-size: 1rem;
+      letter-spacing: 0.004em;
+    }
+  }
+}
+
+// ----------------------
+// お問い合わせフォーム
+// ----------------------
+// お問い合わせフォーム
+.bl_contactForm {
+  // ボーダーを消去
+  border: none;
+
+  // 余白
+  margin: 0;
+  padding: 0;
+}
+
+// メッセージ
+.bl_contactForm_msg {
+  // 文字設定
+  font-size: 0.875rem;
+  font-weight: map-get(v.$fontweights, regular);
+  letter-spacing: 0.004em;
+  @include m.line-height-adjustment(1.714286);
+
+  // 余白設定
+  margin-top: 0;
+  margin-bottom: 50px;
+
+  // 文字調整
+  &::before {
+    margin-top: -2px;
+  }
+
+  &::after {
+    margin-bottom: -2px;
+  }
+
+  @include m.media-query-min(md) {
+    font-size: 1rem;
+    @include m.line-height-adjustment(1.5);
+
+    &::before {
+      padding-top: 2px;
+      margin-top: 0;
+    }
+
+    &::after {
+      padding-bottom: 0;
+      margin-bottom: -2px;
+    }
+  }
+}
+
+// 項目名
+.bl_contactForm_ttl {
+  display: inline-block;
+
+  // 文字設定
+  font-weight: map-get(v.$fontweights, bold);
+  letter-spacing: 0.004em;
+  @include m.line-height-adjustment(1);
+
+  align-items: center;
+
+  // 余白設定
+  margin-top: 0;
+  margin-bottom: 7px;
+
+  // 文字調整
+  &::before {
+    padding-top: 6px;
+  }
+
+  &::after {
+    padding-bottom: 2px;
+  }
+
+  /*
+  @include m.media-query-min(md) {
+    // 文字調整
+    &::before {
+      padding-top: 4px;
+    }
+
+    &::after {
+      padding-bottom: 4px;
+    }
+  }
+  */
+
+  &.bl_contactForm_ttl__sm {
+    &::before {
+      padding-top: 1.5px;
+    }
+
+    &::after {
+      padding-bottom: 1.5px;
+    }
+  }
+}
+
+// 入力欄
+.bl_contactForm input[type="text"],
+.bl_contactForm input[type="email"],
+.bl_contactForm input[type="tel"] {
+  // 大きさ設定
+  width: 100%;
+  height: 48px;
+
+  @include m.media-query-min(lg) {
+    height: 41px;
+  }
+
+  // 元のデザインを消去
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  // ボーダー
+  box-sizing: border-box;
+  border: 1px solid #333;
+
+  // 余白設定
+  margin-bottom: 35px;
+
+  @include m.media-query-min(lg) {
+    margin-bottom: 40px;
+  }
+}
+
+.bl_contactForm textarea {
+  display: block;
+
+  // 大きさ設定
+  width: 100%;
+  height: 210px;
+
+  @include m.media-query-min(md) {
+    height: 180px;
+  }
+
+  @include m.media-query-min(lg) {
+    height: 212px;
+  }
+
+  // 元のデザインを消去
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  // ボーダー
+  box-sizing: border-box;
+  border: 1px solid #333;
+
+  // 余白設定
+  margin-bottom: 40px;
+}
+
+// ラジオボタン
+.bl_contactForm .bl_radioUnit {
+  // 余白
+  margin-bottom: 27px;
+
+  @include m.media-query-min(md) {
+    margin-bottom: 26px;
+  }
+
+  @include m.media-query-min(lg) {
+    margin-bottom: 33px;
+  }
+}
+
+// スクロールボックス
+.bl_contactForm .bl_scrollbox {
+  // 余白
+  margin-bottom: 40px;
+}
+
+// チェックボックス
+.bl_contactForm .bl_checkbox {
+  // 余白
+  margin-bottom: 40px;
+}
+
+// ----------------------
+// ラジオボタン
+// ----------------------
+
+// ラジオボタンの集まり
+.bl_radioUnit {
+  display: block;
+
+  @include m.media-query-min(md) {
+    display: flex;
+  }
+}
+
+// ラジオボタン
+.bl_radio {
+  display: flex;
+  align-items: flex-start;
+
+  // 余白
+  padding: 7px 10px;
+  margin-right: 30px;
+}
+
+// ラジオボタン本体
+.bl_radio_input {
+  // 大きさ
+  width: 20px;
+  height: 20px;
+
+  // 色
+  accent-color: #333;
+
+  // 余白
+  margin-right: 10px;
+}
+
+// ラジオボタンラベル
+.bl_radio_txt {
+  // 文字
+  font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
+  font-size: 1rem;
+  font-weight: map-get(v.$fontweights, medium);
+  @include m.letter-spacing-adjustment(0.004em);
+  @include m.line-height-adjustment(1);
+
+  // 文字調整
+
+  &::before {
+    margin-top: 0;
+    padding-top: 2.5px;
+  }
+
+  &::after {
+    margin-bottom: 0;
+    padding-bottom: 2.5px;
+  }
+}
+
+// ----------------------
+// チェックボックス
+// ----------------------
+
+.bl_checkbox {
+  display: flex;
+  align-items: flex-start;
+
+  @include m.media-query-min(md) {
+    justify-content: center;
+  }
+}
+
+// チェックボックス本体
+.bl_checkbox_input {
+  display: inline-block;
+  align-items: center;
+
+  // 大きさ
+  width: 16px;
+  height: 16px;
+
+  @include m.media-query-min(md) {
+    width: 20px;
+    height: 20px;
+  }
+
+  // 元のデザインを消去
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  // ボーダー
+  border: 1px solid #333;
+
+  // 余白
+  margin-right: 10px;
+}
+
+// 文字
+.bl_checkbox_txt {
+  display: inline-block;
+  align-items: center;
+
+  // 文字
+  font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
+  font-size: 0.875rem;
+  font-weight: map-get(v.$fontweights, mesium);
+  letter-spacing: 0.004em;
+  @include m.line-height-adjustment(1.714286);
+
+  @include m.media-query-min(md) {
+    font-size: 1rem;
+    @include m.line-height-adjustment(1.5);
+  }
+
+  // 文字調整
+  &::before {
+    margin-top: -3px;
+  }
+
+  &::after {
+    margin-bottom: -3px;
+  }
+
+  @include m.media-query-min(md) {
+    &::before {
+      margin-top: -1.5px;
+    }
+
+    &::after {
+      margin-bottom: -1.5px;
+    }
+  }
+
+  @include m.media-query-min(lg) {
+    &::before {
+      margin-top: 0;
+    }
+
+    &::after {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ----------------------
+// スクロールボックス
+// ----------------------
+
+// スクロールボックス
+.bl_scrollbox {
+  // 大きさ
+  width: 100%;
+  height: 226px;
+
+  @include m.media-query-min(lg) {
+    height: 252px;
+  }
+
+  // ボーダー
+  box-sizing: border-box;
+  border: 1px solid #333;
+
+  // 縦方向にスクロール可能にする
+  overflow-y: scroll;
+}
+
+// テキスト
+.bl_scrollbox_txt {
+  // 文字
+  font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
+  font-size: 0.875rem;
+  font-weight: map-get(v.$fontweights, meduium);
+  letter-spacing: 0.004em;
+  @include m.line-height-adjustment(1.7142858);
+
+  @include m.media-query-min(md) {
+    font-size: 1rem;
+    @include m.line-height-adjustment(1.5);
+
+    &::before {
+      margin-top: 0;
+    }
+
+    &::after {
+      margin-bottom: 0;
+    }
+  }
+
+  // 余白
+  padding: 9px 14px 0 9px;
+  margin: 0;
+}
+
+// ----------------------
+// タイトル
+// ----------------------
+
+// セクションタイトル
 .el_sectionTtl {
-  /* 文字設定 */
-  color: v.$base-color;
+  // 文字設定
   font-weight: map-get(v.$fontweights, extrabold);
   font-size: 1.75rem;
   letter-spacing: 0.068em;
 
-  /* 余白設定 */
-  margin-top: 0;
-  margin-bottom: 30px;
-
-  /* タブレット幅以上用 */
-  @include m.mediaQueryMin(md) {
-    /* 文字設定 */
+  @include m.media-query-min(md) {
     font-size: 2rem;
   }
+
+  // 余白設定
+  margin-top: 0;
+  margin-bottom: 30px;
 }
 
 .pg_about .el_sectionTtl {
-  /* 文字設定 */
+  // 文字設定
   font-size: 2rem;
 }
 
-/*----------------------
-  文字
-------------------------*/
-/* セクションメッセージ */
+// ----------------------
+// 文字
+// ----------------------
+
+// セクションメッセージ
 .el_sectionMsg {
-  /* 大きさ設定 */
+  // 大きさ設定
   max-width: 510px;
 
-  /* 文字設定 */
-  color: v.$base-color;
-  font-family: "Montserrat", "游ゴシック", "YuGothic", sans-serif;
+  // 文字設定
+  font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
   font-weight: map-get(v.$fontweights, medium);
-  @include m.lineHeightAdjustment(2);
+  @include m.line-height-adjustment(2);
 
-  /* 余白設定 */
+  // 余白設定
   margin-top: 0;
   margin-bottom: 30px;
 
-  /* 文字調整 */
+  // 文字調整
   &::before {
     margin-top: -4px;
   }
 
   &::after {
-    margin-bottom: -4 v px;
+    margin-bottom: -4px;
   }
 }
 
-/* aboutページ用セクションメッセージ */
+// aboutページ用セクションメッセージ
 .pg_about .el_sectionMsg {
-  /* 文字設定 */
-  font-family: "Montserrat", "Noto Sans JP", sans-serif;
+  // 文字
   font-weight: map-get(v.$fontweights, bold);
   font-size: 0.875rem;
 
-  /* 余白設定 */
-  margin-bottom: 40px;
+  @include m.media-query-min(lg) {
+    font-size: 1rem;
+  }
+
+  // 余白
+  margin-bottom: 0;
+
+  // 文字調整
+  &::before {
+    margin-top: -3px;
+  }
+
+  &::after {
+    margin-bottom: -3px;
+  }
+
+  @include m.media-query-min(lg) {
+    &::before {
+      margin-top: -4px;
+    }
+
+    &::after {
+      margin-bottom: -4px;
+    }
+  }
 }
 
-/* セクションのメインメッセージ */
+// セクションのメインメッセージ
 .el_sectionSummary {
-  /* 文字設定 */
-  font-family: "Montserrat", "Noto Sans JP", sans-serif;
+  // 文字設定
   font-weight: map-get(v.$fontweights, bold);
   font-size: 1.5rem;
+  letter-spacing: 0.005em;
 
-  /* 余白設定 */
+  // 余白設定
   margin: 30px 0;
 }
 
-/*----------------------
-  ボタン
-------------------------*/
-/* 黒背景＋白文字 */
+// ----------------------
+// ボタン
+// ----------------------
 .el_btn {
-  /* 上下中央揃え */
+  // 上下中央揃え
   display: flex;
   justify-content: center;
   align-items: center;
 
-  /* サイズ設定 */
+  // サイズ設定
   width: 160px;
   height: 36px;
 
-  /* 装飾設定 */
+  // 元のデザインを消去
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  padding: 0;
+
+  // 装飾設定
   background-color: #000;
   text-decoration: none;
 
-  /* 文字設定 */
+  // 文字設定
   color: #fff;
   font-size: bold;
   font-size: 0.75rem;
   letter-spacing: 0.015em;
 }
 
-/*----------------------
-  フッター
-------------------------*/
+// ----------------------
+// マップ
+// ----------------------
+.el_googleMap {
+  width: 100%;
+  vertical-align: bottom;
+
+  // 大きさ ---
+  // sm: height=470px
+  // md: height=230px
+  // lg: height=360px
+  // ---------------------
+  @include m.viewport-scale(height, sm, 470px, md, 230px);
+
+  @include m.media-query-min(md) {
+    @include m.viewport-scale(height, sm, 230px, md, 360px);
+  }
+
+  @include m.media-query-min(lg) {
+    height: 360px;
+  }
+}
+
+// ----------------------
+// ラベル
+// ----------------------
+.el_label {
+  display: inline-block;
+
+  // 文字
+  color: #fff;
+  font-family: Montserrat, "游ゴシック", YuGothic, sans-serif;
+  font-size: 0.75rem;
+  font-weight: map-get(v.$fontweights, medium);
+  letter-spacing: 0.004em;
+
+  // 背景色
+  background-color: #333;
+
+  // 余白
+  padding: 2px 5px 0;
+  margin-left: 10px;
+}
+
+// ----------------------
+// フッター
+// ----------------------
 .el_copyRight {
-  /* 文字設定 */
+  // 文字設定
   color: #fff;
   font-size: 0.625rem;
   font-weight: map-get(v.$fontweights, medium);
   white-space: nowrap;
   letter-spacing: 0.015em;
 
-  /* 余白設定 */
+  // 余白設定
   margin: 0;
 }
 
-/*----------------------
-  ヘルパー
-------------------------*/
-/* 背景色を白に設定 */
-.bg_white {
-  background-color: #fff;
-  opacity: 95%;
+// ----------------------
+// ヘルパー
+// ----------------------
+
+// 背景色を設定
+.hp_bgGray {
+  position: relative;
+
+  &::after {
+    // 背景
+    content: "";
+    width: 100vw;
+    height: 100%;
+    background-color: #f0f0f0;
+
+    // 位置
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+  }
 }
 
-/* タブレット幅以上でのヘルパー */
+// 中央揃え
+.hp_centerAlign {
+  margin: 0 auto;
+}
+
+// 文字幅
+.hp_fontweightExtrabold {
+  font-weight: map-get(v.$fontweights, extrabold);
+}
+
+// フォントサイズ
+.hp_fontsize14 {
+  font-size: 0.875rem;
+}
+
+// 余白
+.hp_mb9 {
+  margin-bottom: 9px;
+}
+
+.hp_mb10 {
+  margin-bottom: 10px;
+}
+
+// タブレット幅以上でのヘルパー
 @media screen and (min-width: 768px) {
+  .md_pl120 {
+    padding-left: 120px;
+  }
+
   .md_pt160 {
     padding-top: 160px !important;
   }
@@ -1047,15 +1915,17 @@
     margin-bottom: 80px !important;
   }
 
-  /* 位置設定 */
+  // 位置設定
   .md_TOP100 {
+    position: relative;
     top: -100px;
+    margin-bottom: -100px;
   }
 }
 
-/* PC幅以上でのヘルパー */
+// PC幅以上でのヘルパー
 @media screen and (min-width: 1440px) {
-  /* 余白設定 */
+  // 余白設定
   .lg_pt180 {
     padding-top: 180px !important;
   }
@@ -1064,11 +1934,15 @@
     padding-bottom: 120px !important;
   }
 
+  .lg_pl226 {
+    padding-left: 226px !important;
+  }
+
   .lg_mb0 {
     margin-bottom: 0 !important;
   }
 
-  /* 右揃え */
+  // 右揃え
   .lg_right {
     margin-right: 0;
     margin-left: auto;
