@@ -1446,10 +1446,9 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
   display: inline-block;
-  content: "\f00c";
-  font-family: "Font Awesome 5 Free", sans-serif;
-  font-weight: 900;
-  font-size: 0.8rem;
+  content: url("../fontawesome-free-6.2.0-web/check.svg");
+  width: 100%;
+  height: 100%;
   opacity: 0;
 }
 
