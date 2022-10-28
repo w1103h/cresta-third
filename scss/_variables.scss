@@ -1,0 +1,28 @@
+// ------------------------------------------------
+//  ファイル名：_variables.scss
+//  機能：変数を記述する
+// ------------------------------------------------
+
+// フォントの太さ
+$fontweights: (
+  thin: 100,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  bold: 700,
+  extrabold: 800,
+  black: 900,
+) !default;
+
+// 各ページのクラス名
+$pageclasses: (
+  home: ".pg_home",
+  about: ".pg_about",
+) !default;
+
+// ブレークポイント
+$breakpoints: (
+  sm: 375px,
+  md: 768px,
+  lg: 1440px,
+) !default;

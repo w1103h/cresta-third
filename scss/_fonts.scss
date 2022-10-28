@@ -1,0 +1,46 @@
+@use "variables" as v;
+
+// ------------------------------------------------
+//  ファイル名：_fonts.scss
+//  機能：フォントのスタイルを記述する
+// ------------------------------------------------
+
+// Montserrat ExtraBold
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: map-get(v.$fontweights, extrabold);
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+}
+
+// Montserrat Bold
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: map-get(v.$fontweights, bold);
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+}
+
+// Montserrat Medium
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: map-get(v.$fontweights, medium);
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+}
+
+// Noto Sans JP Medium
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: map-get(v.$fontweights, medium);
+  src: url("../fonts/NotoSansJP-Medium.otf") format("opentype");
+}
+
+// Noto Sans JP Bold
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: map-get(v.$fontweights, bold);
+  src: url("../fonts/NotoSansJP-Bold.otf") format("opentype");
+}
